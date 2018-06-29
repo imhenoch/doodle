@@ -4,4 +4,8 @@ version = "0.1.0"
 authors = ["imhenoch <isidro.henoch@gmail.com>"]
 
 [dependencies]
-gtk = { git = "https://github.com/gtk-rs/gtk.git" }
+glib = "^0"
+gio = "^0"
+gdk = "^0"
+gdk-pixbuf = "^0"
+gtk = "^0"
