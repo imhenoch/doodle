@@ -13,16 +13,36 @@ pub fn build_ui(application: &gtk::Application) {
     window.set_default_size(700, 500);
 
     let container = Box::new(Orientation::Vertical, 10);
-    let scroll = ScrolledWindow::new(None, None);
-    let text = TextView::new();
-    let btn2 = Button::new_with_label("Btn 2");
-
-    scroll.add(&text);
     container.set_homogeneous(false);
-    container.add(&scroll);
-    container.add(&btn2);
 
-    container.set_child_packing(&scroll, true, true, 5, PackType::Start);
+    let text = text_view(&container);
+    btn(&container, &text);
+
     window.add(&container);
     window.show_all();
+}
+
+fn text_view(container: &Box) -> TextView {
+    let scroll = ScrolledWindow::new(None, None);
+    let text = TextView::new();
+
+    scroll.add(&text);
+    container.add(&scroll);
+    container.set_child_packing(&scroll, true, true, 5, PackType::Start);
+
+    text
+}
+
+fn btn(container: &Box, text: &TextView) {
+    let compile = Button::new_with_label("Compile");
+    let text_clone = text.clone();
+    container.add(&compile);
+
+    compile.connect_clicked(move |_| {
+        let buffer = text_clone.get_buffer().unwrap();
+        let start = buffer.get_iter_at_offset(0);
+        let end = buffer.get_end_iter();
+        let text = buffer.get_text(&start, &end, false);
+        println!("{}", text.expect(""));
+    });
 }
