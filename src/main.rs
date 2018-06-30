@@ -3,6 +3,7 @@ extern crate gtk;
 use gio::prelude::*;
 use std::env::args;
 
+mod lexer;
 mod ui;
 
 fn main() {

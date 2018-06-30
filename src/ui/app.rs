@@ -4,6 +4,8 @@ extern crate gtk;
 use gtk::prelude::*;
 use gtk::{ApplicationWindow, Box, Button, Orientation, PackType, ScrolledWindow, TextView};
 
+use lexer::string_processor;
+
 pub fn build_ui(application: &gtk::Application) {
     let window = ApplicationWindow::new(application);
 
@@ -43,6 +45,6 @@ fn btn(container: &Box, text: &TextView) {
         let start = buffer.get_iter_at_offset(0);
         let end = buffer.get_end_iter();
         let text = buffer.get_text(&start, &end, true);
-        println!("{}", text.expect(""));
+        string_processor::transform_string_to_collection(text.expect(""));
     });
 }
