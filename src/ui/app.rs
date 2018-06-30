@@ -42,7 +42,7 @@ fn btn(container: &Box, text: &TextView) {
         let buffer = text_clone.get_buffer().unwrap();
         let start = buffer.get_iter_at_offset(0);
         let end = buffer.get_end_iter();
-        let text = buffer.get_text(&start, &end, false);
+        let text = buffer.get_text(&start, &end, true);
         println!("{}", text.expect(""));
     });
 }
