@@ -1,6 +1,6 @@
 use lexer::{Lexem, LIMITERS};
 
-pub fn transform_string_to_collection(input: String) {
+pub fn transform_string_to_collection(input: String) -> Vec<Lexem> {
     let mut lexems: Vec<Lexem> = Vec::new();
     let mut x0 = 0;
     let mut x1 = 0;
@@ -40,9 +40,7 @@ pub fn transform_string_to_collection(input: String) {
         let s = input.get(x0..x1).unwrap();
         lexems.push(Lexem::new(s.to_string(), column - s.len() as u32, row));
     }
-    for lexem in lexems {
-        println!("lexem: {}", lexem);
-    }
+    lexems
 }
 
 fn is_limiter(limiter: &char) -> bool {
