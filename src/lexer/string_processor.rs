@@ -38,7 +38,7 @@ pub fn transform_string_to_collection(input: String) {
     }
     if x0 != x1 {
         let s = input.get(x0..x1).unwrap();
-        lexems.push(Lexem::new(s.to_string(), column, row));
+        lexems.push(Lexem::new(s.to_string(), column - s.len() as u32, row));
     }
     for lexem in lexems {
         println!("lexem: {}", lexem);
