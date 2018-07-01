@@ -4,6 +4,7 @@ extern crate gtk;
 use gtk::prelude::*;
 use gtk::{ApplicationWindow, Box, Button, Orientation, PackType, ScrolledWindow, TextView};
 
+use automatas::input_processor;
 use lexer::string_processor;
 
 pub fn build_ui(application: &gtk::Application) {
@@ -46,5 +47,6 @@ fn btn(container: &Box, text: &TextView) {
         let end = buffer.get_end_iter();
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
+        input_processor::get_symbol_table(input);
     });
 }
