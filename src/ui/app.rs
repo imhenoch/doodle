@@ -5,7 +5,7 @@ use gtk::prelude::*;
 use gtk::{ApplicationWindow, Box, Button, Orientation, PackType, ScrolledWindow, TextView};
 
 use automatas::input_processor;
-use lexer::string_processor;
+use input_formatter::string_processor;
 
 pub fn build_ui(application: &gtk::Application) {
     let window = ApplicationWindow::new(application);
@@ -48,5 +48,13 @@ fn btn(container: &Box, text: &TextView) {
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
         let symbol_table = input_processor::get_symbol_table(input);
+        match symbol_table {
+            Ok(_) => {
+                println!("Success");
+            }
+            Err(error) => {
+                println!("{}", error);
+            }
+        }
     });
 }

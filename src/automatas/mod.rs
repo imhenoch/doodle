@@ -1,6 +1,7 @@
 use std::fmt;
 
 pub mod input_processor;
+pub mod keyword;
 
 pub enum DataType {
     NONE,
@@ -13,7 +14,7 @@ pub enum DataType {
 
 pub enum Category {
     NONE,
-    KEY_WORD,
+    KEYWORD,
     ID,
     OPERATION,
     VALUE,

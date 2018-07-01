@@ -1,5 +1,5 @@
-use automatas::{Category, Lexem};
-use lexer::InputSlice;
+use automatas::{keyword, Category, Lexem};
+use input_formatter::InputSlice;
 use std::collections::HashMap;
 
 pub fn get_symbol_table(input: Vec<InputSlice>) -> Result<HashMap<u32, Lexem>, String> {
@@ -23,4 +23,8 @@ pub fn get_symbol_table(input: Vec<InputSlice>) -> Result<HashMap<u32, Lexem>, S
     Ok(symbol_table)
 }
 
-fn find_category(lexem: &mut Lexem) {}
+fn find_category(lexem: &mut Lexem) {
+    if keyword::is_keyword(&lexem.token.clone()) {
+        lexem.set_category(Category::KEYWORD);
+    }
+}

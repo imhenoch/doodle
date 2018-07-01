@@ -1,4 +1,4 @@
-use lexer::{InputSlice, LIMITERS};
+use input_formatter::{InputSlice, LIMITERS};
 
 pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
     let mut lexems: Vec<InputSlice> = Vec::new();
@@ -9,6 +9,7 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
     let len = input.len();
     let mut chars = input.chars();
     let mut skip_line = false;
+    let mut new_line = false;
 
     while x1 < len {
         let c = chars.next().unwrap();
@@ -29,11 +30,16 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
             }
             if c == '\n' {
                 skip_line = false;
+                new_line = true;
                 row += 1;
                 column = 0;
             }
         }
-        column += 1;
+        if new_line {
+            new_line = false
+        } else {
+            column += 1;
+        }
         x1 += 1;
     }
     if x0 != x1 {

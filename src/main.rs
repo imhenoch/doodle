@@ -4,7 +4,7 @@ use gio::prelude::*;
 use std::env::args;
 
 mod automatas;
-mod lexer;
+mod input_formatter;
 mod ui;
 
 fn main() {
