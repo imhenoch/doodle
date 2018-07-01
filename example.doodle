@@ -1,0 +1,29 @@
+// Random comment
+// Another one!
+fn add(x : int, y : int) : int {
+  ret x + y;
+}
+
+fn sub(x : int, y : int) : int {
+  ret x - y;
+}
+
+fn mul(x : int, y : int) : int {
+  ret x * y;
+}
+
+fn div(x : int, y : int) : int {
+  ret x / y;
+}
+
+fn main() {
+  let x : int = 4, y : int = 2;
+  let mut res : int = 0;
+  for i in 0 ... 10 {
+    if i < 5 {
+      res = add(x, y);
+    } else {
+      res = sub(x, y);
+    }
+  }
+}
