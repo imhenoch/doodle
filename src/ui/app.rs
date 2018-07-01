@@ -45,6 +45,6 @@ fn btn(container: &Box, text: &TextView) {
         let start = buffer.get_iter_at_offset(0);
         let end = buffer.get_end_iter();
         let text = buffer.get_text(&start, &end, true);
-        let lexems = string_processor::transform_string_to_collection(text.expect(""));
+        let input = string_processor::transform_string_to_collection(text.expect(""));
     });
 }

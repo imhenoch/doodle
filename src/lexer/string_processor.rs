@@ -1,7 +1,7 @@
-use lexer::{Lexem, LIMITERS};
+use lexer::{InputSlice, LIMITERS};
 
-pub fn transform_string_to_collection(input: String) -> Vec<Lexem> {
-    let mut lexems: Vec<Lexem> = Vec::new();
+pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
+    let mut lexems: Vec<InputSlice> = Vec::new();
     let mut x0 = 0;
     let mut x1 = 0;
     let mut column = 0;
@@ -18,14 +18,14 @@ pub fn transform_string_to_collection(input: String) -> Vec<Lexem> {
                 if s == "//" {
                     skip_line = true;
                 } else if !skip_line {
-                    lexems.push(Lexem::new(s.to_string(), column - s.len() as u32, row));
+                    lexems.push(InputSlice::new(s.to_string(), column - s.len() as u32, row));
                 }
                 x0 = x1 + 1;
             } else {
                 x0 += 1;
             }
             if c == ';' || c == '(' || c == ')' || c == '{' || c == '}' || c == ',' {
-                lexems.push(Lexem::new(c.to_string(), column as u32, row));
+                lexems.push(InputSlice::new(c.to_string(), column as u32, row));
             }
             if c == '\n' {
                 skip_line = false;
@@ -38,7 +38,7 @@ pub fn transform_string_to_collection(input: String) -> Vec<Lexem> {
     }
     if x0 != x1 {
         let s = input.get(x0..x1).unwrap();
-        lexems.push(Lexem::new(s.to_string(), column - s.len() as u32, row));
+        lexems.push(InputSlice::new(s.to_string(), column - s.len() as u32, row));
     }
     lexems
 }
