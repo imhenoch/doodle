@@ -1,5 +1,6 @@
 use std::fmt;
 
+pub mod id_automata;
 pub mod input_processor;
 pub mod keyword;
 
@@ -18,6 +19,22 @@ pub enum Category {
     ID,
     OPERATION,
     VALUE,
+}
+
+impl fmt::Display for Category {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Category::NONE => "NONE",
+                Category::KEYWORD => "KEYWORD",
+                Category::ID => "ID",
+                Category::OPERATION => "OPERATION",
+                Category::VALUE => "VALUE",
+            }
+        )
+    }
 }
 
 pub struct Lexem {
@@ -51,5 +68,11 @@ impl Lexem {
 
     fn set_context(&mut self, context: String) {
         self.context = Some(context);
+    }
+}
+
+impl fmt::Display for Lexem {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "token: {}, category: {}", self.token, self.category)
     }
 }
