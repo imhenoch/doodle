@@ -41,6 +41,7 @@ pub enum Category {
     ID,
     OPERATOR,
     VALUE,
+    LIMITER,
 }
 
 impl fmt::Display for Category {
@@ -54,6 +55,7 @@ impl fmt::Display for Category {
                 Category::ID => "ID",
                 Category::OPERATOR => "OPERATOR",
                 Category::VALUE => "VALUE",
+                Category::LIMITER => "LIMITER",
             }
         )
     }
