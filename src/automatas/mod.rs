@@ -18,6 +18,23 @@ pub enum DataType {
     STR,
 }
 
+impl fmt::Display for DataType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                DataType::NONE => "NONE,",
+                DataType::INT => "INT,",
+                DataType::FLOAT => "FLOAT,",
+                DataType::BOOL => "BOOL,",
+                DataType::CHAR => "CHAR,",
+                DataType::STR => "STR,",
+            }
+        )
+    }
+}
+
 pub enum Category {
     NONE,
     KEYWORD,
@@ -78,6 +95,10 @@ impl Lexem {
 
 impl fmt::Display for Lexem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "token: {}, category: {}", self.token, self.category)
+        write!(
+            f,
+            "token: {}, category: {}, type: {}",
+            self.token, self.category, self.data_type
+        )
     }
 }
