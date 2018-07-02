@@ -29,7 +29,14 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
             } else {
                 x0 += 1;
             }
-            if !is_string && (c == ';' || c == '(' || c == ')' || c == '{' || c == '}' || c == ',')
+            if !is_string
+                && (c == ';'
+                    || c == '('
+                    || c == ')'
+                    || c == '{'
+                    || c == '}'
+                    || c == ','
+                    || c == '.')
             {
                 lexems.push(InputSlice::new(c.to_string(), column as u32, row));
             }
