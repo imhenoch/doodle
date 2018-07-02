@@ -102,8 +102,8 @@ impl fmt::Display for Lexem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "token: {}, category: {}, type: {}",
-            self.token, self.category, self.data_type
+            "token: {}, category: {}, type: {}, column: {}, row: {}",
+            self.token, self.category, self.data_type, self.column, self.row
         )
     }
 }
