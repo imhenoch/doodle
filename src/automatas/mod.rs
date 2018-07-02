@@ -5,6 +5,7 @@ pub mod char_automata;
 pub mod float_automata;
 pub mod id_automata;
 pub mod input_processor;
+pub mod int_automata;
 pub mod keyword;
 pub mod operator;
 pub mod string_automata;
