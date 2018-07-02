@@ -49,8 +49,11 @@ fn btn(container: &Box, text: &TextView) {
         let input = string_processor::transform_string_to_collection(text.expect(""));
         let symbol_table = input_processor::get_symbol_table(input);
         match symbol_table {
-            Ok(_) => {
+            Ok(symbols) => {
                 println!("Success");
+                for (_, symbol) in symbols {
+                    println!("{}", symbol);
+                }
             }
             Err(error) => {
                 println!("{}", error);
