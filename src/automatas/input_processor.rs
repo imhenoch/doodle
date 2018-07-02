@@ -1,4 +1,4 @@
-use automatas::{id_automata, keyword, operator, value, Category, Lexem};
+use automatas::{id_automata, keyword, limiter, operator, value, Category, Lexem};
 use input_formatter::InputSlice;
 use std::collections::HashMap;
 
@@ -32,6 +32,8 @@ fn find_category(lexem: &mut Lexem) {
         Category::ID
     } else if operator::is_operator(&token.clone()) {
         Category::OPERATOR
+    } else if limiter::is_limiter(&token.clone()) {
+        Category::LIMITER
     } else {
         Category::NONE
     });

@@ -7,6 +7,7 @@ pub mod id_automata;
 pub mod input_processor;
 pub mod int_automata;
 pub mod keyword;
+pub mod limiter;
 pub mod operator;
 pub mod string_automata;
 pub mod value;
