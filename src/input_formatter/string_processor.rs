@@ -36,7 +36,8 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
                     || c == '{'
                     || c == '}'
                     || c == ','
-                    || c == '.')
+                    || c == '.'
+                    || c == ':')
             {
                 lexems.push(InputSlice::new(c.to_string(), column as u32, row));
             }
