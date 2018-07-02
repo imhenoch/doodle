@@ -27,12 +27,12 @@ impl fmt::Display for DataType {
             f,
             "{}",
             match self {
-                DataType::NONE => "NONE,",
-                DataType::INT => "INT,",
-                DataType::FLOAT => "FLOAT,",
-                DataType::BOOL => "BOOL,",
-                DataType::CHAR => "CHAR,",
-                DataType::STR => "STR,",
+                DataType::NONE => "NONE",
+                DataType::INT => "INT",
+                DataType::FLOAT => "FLOAT",
+                DataType::BOOL => "BOOL",
+                DataType::CHAR => "CHAR",
+                DataType::STR => "STR",
             }
         )
     }
