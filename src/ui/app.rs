@@ -51,7 +51,7 @@ fn btn(container: &Box, text: &TextView) {
         match symbol_table {
             Ok(symbols) => {
                 println!("Success");
-                for (_, symbol) in symbols {
+                for symbol in symbols {
                     println!("{}", symbol);
                 }
             }
