@@ -10,10 +10,14 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
     let mut chars = input.chars();
     let mut skip_line = false;
     let mut new_line = false;
+    let mut is_string = false;
 
     while x1 < len {
         let c = chars.next().unwrap();
-        if is_limiter(&c) {
+        if c == '"' {
+            is_string = !is_string;
+        }
+        if !is_string && is_limiter(&c) {
             if x0 != x1 {
                 let s = input.get(x0..x1).unwrap();
                 if s == "//" {
@@ -25,7 +29,8 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
             } else {
                 x0 += 1;
             }
-            if c == ';' || c == '(' || c == ')' || c == '{' || c == '}' || c == ',' {
+            if !is_string && (c == ';' || c == '(' || c == ')' || c == '{' || c == '}' || c == ',')
+            {
                 lexems.push(InputSlice::new(c.to_string(), column as u32, row));
             }
             if c == '\n' {
