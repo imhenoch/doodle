@@ -1,9 +1,11 @@
 use std::fmt;
 
+pub mod boolean;
 pub mod id_automata;
 pub mod input_processor;
 pub mod keyword;
 pub mod operator;
+pub mod value;
 
 pub enum DataType {
     NONE,
