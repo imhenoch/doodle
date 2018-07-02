@@ -3,6 +3,7 @@ use std::fmt;
 pub mod id_automata;
 pub mod input_processor;
 pub mod keyword;
+pub mod operator;
 
 pub enum DataType {
     NONE,
@@ -17,7 +18,7 @@ pub enum Category {
     NONE,
     KEYWORD,
     ID,
-    OPERATION,
+    OPERATOR,
     VALUE,
 }
 
@@ -30,7 +31,7 @@ impl fmt::Display for Category {
                 Category::NONE => "NONE",
                 Category::KEYWORD => "KEYWORD",
                 Category::ID => "ID",
-                Category::OPERATION => "OPERATION",
+                Category::OPERATOR => "OPERATOR",
                 Category::VALUE => "VALUE",
             }
         )
