@@ -1,10 +1,12 @@
 pub fn is_keyword(token: &String) -> bool {
-    for keyword in get_keywords().into_iter() {
-        if token == keyword {
-            return true;
-        }
+    match get_keywords()
+        .into_iter()
+        .filter(|&keyword| keyword == token)
+        .next()
+    {
+        Some(_) => true,
+        None => false,
     }
-    false
 }
 
 fn get_keywords() -> [String; 13] {
