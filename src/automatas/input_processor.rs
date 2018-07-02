@@ -1,4 +1,4 @@
-use automatas::{id_automata, keyword, operator, Category, Lexem};
+use automatas::{id_automata, keyword, operator, value, Category, Lexem};
 use input_formatter::InputSlice;
 use std::collections::HashMap;
 
@@ -28,9 +28,11 @@ fn find_category(lexem: &mut Lexem) {
     let token = lexem.token.clone();
     lexem.set_category(if keyword::is_keyword(&token.clone()) {
         Category::KEYWORD
+    } else if value::is_value(&mut token.clone()) {
+        Category::VALUE
     } else if id_automata::is_id(&mut token.clone()) {
         Category::ID
-    } else if operator::is_operator(&mut token.clone()) {
+    } else if operator::is_operator(&token.clone()) {
         Category::OPERATOR
     } else {
         Category::NONE
