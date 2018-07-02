@@ -10,9 +10,13 @@ fn q0(token: &mut String) -> bool {
 }
 
 fn q1(token: &mut String) -> bool {
-    match token.remove(0) {
-        '"' => q2(token),
-        _ => q1(token),
+    if token.is_empty() {
+        false
+    } else {
+        match token.remove(0) {
+            '"' => q2(token),
+            _ => q1(token),
+        }
     }
 }
 
