@@ -9,7 +9,7 @@ pub fn is_limiter(token: &String) -> bool {
     }
 }
 
-fn get_limiters() -> [String; 8] {
+fn get_limiters() -> [String; 7] {
     [
         String::from(";"),
         String::from("("),
@@ -17,7 +17,6 @@ fn get_limiters() -> [String; 8] {
         String::from("{"),
         String::from("}"),
         String::from(","),
-        String::from("."),
         String::from(":"),
     ]
 }

@@ -2,7 +2,7 @@ use std::fmt;
 
 pub mod string_processor;
 
-pub const LIMITERS: [char; 10] = [';', '\n', ' ', '(', ')', '{', '}', ',', '.', ':'];
+pub const LIMITERS: [char; 9] = [';', '\n', ' ', '(', ')', '{', '}', ',', ':'];
 
 pub struct InputSlice {
     pub token: String,

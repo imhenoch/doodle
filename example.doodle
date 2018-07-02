@@ -19,7 +19,7 @@ fn div(x : int, y : int) : int {
 fn main() {
   let x : int = 4, y : int = 2;
   let mut res : int = 0;
-  for i in 0 ... 10 {
+  for i in 0 to 10 {
     if i < 5 {
       res = add(x, y);
     } else {
