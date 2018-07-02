@@ -9,6 +9,7 @@ pub mod int_automata;
 pub mod keyword;
 pub mod limiter;
 pub mod operator;
+pub mod scope;
 pub mod string_automata;
 pub mod value;
 
@@ -68,7 +69,7 @@ pub struct Lexem {
     pub token: String,
     pub data_type: DataType,
     pub category: Category,
-    pub context: Option<String>,
+    pub scope: String,
     pub column: u32,
     pub row: u32,
 }
@@ -79,7 +80,7 @@ impl Lexem {
             token: token,
             data_type: DataType::NONE,
             category: Category::NONE,
-            context: None,
+            scope: String::from(""),
             column: column,
             row: row,
         }
@@ -93,8 +94,8 @@ impl Lexem {
         self.category = category;
     }
 
-    fn set_context(&mut self, context: String) {
-        self.context = Some(context);
+    fn set_scope(&mut self, scope: String) {
+        self.scope = scope;
     }
 }
 
@@ -102,8 +103,8 @@ impl fmt::Display for Lexem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "token: {}, category: {}, type: {}, column: {}, row: {}",
-            self.token, self.category, self.data_type, self.column, self.row
+            "token: {}, category: {}, type: {}, column: {}, row: {}, scope: {}",
+            self.token, self.category, self.data_type, self.column, self.row, self.scope
         )
     }
 }

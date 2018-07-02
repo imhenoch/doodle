@@ -47,17 +47,9 @@ fn btn(container: &Box, text: &TextView) {
         let end = buffer.get_end_iter();
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
-        let symbol_table = input_processor::get_symbol_table(input);
-        match symbol_table {
-            Ok(symbols) => {
-                println!("Success");
-                for symbol in symbols {
-                    println!("{}", symbol);
-                }
-            }
-            Err(error) => {
-                println!("{}", error);
-            }
+        let symbols = input_processor::get_symbols(input);
+        for symbol in symbols {
+            println!("{}", symbol);
         }
     });
 }

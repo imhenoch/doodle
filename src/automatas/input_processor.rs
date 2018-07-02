@@ -1,24 +1,15 @@
-use automatas::{id_automata, keyword, limiter, operator, value, Category, Lexem};
+use automatas::{id_automata, keyword, limiter, operator, scope, value, Category, Lexem};
 use input_formatter::InputSlice;
 
-pub fn get_symbol_table(input: Vec<InputSlice>) -> Result<Vec<Lexem>, String> {
-    let mut symbol_table: Vec<Lexem> = Vec::new();
+pub fn get_symbols(input: Vec<InputSlice>) -> Vec<Lexem> {
+    let mut symbols: Vec<Lexem> = Vec::new();
     for slice in input {
         let mut lexem = Lexem::new(slice.token, slice.column, slice.row);
         find_category(&mut lexem);
-        match lexem.category {
-            Category::NONE => {
-                return Err(String::from(format!(
-                    "Unrecognizable token on column {}, row {}",
-                    lexem.column, lexem.row,
-                )));
-            }
-            _ => {
-                symbol_table.push(lexem);
-            }
-        }
+        symbols.push(lexem);
     }
-    Ok(symbol_table)
+    scope::set_scope(&mut symbols);
+    symbols
 }
 
 fn find_category(lexem: &mut Lexem) {
