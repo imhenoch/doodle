@@ -15,7 +15,7 @@ pub fn build_ui(application: &gtk::Application) {
     window.set_title("Doodle");
     window.set_border_width(10);
     window.set_position(gtk::WindowPosition::Center);
-    window.set_default_size(1200, 900);
+    window.set_default_size(1200, 700);
 
     let h_container = Box::new(Orientation::Horizontal, 5);
 
@@ -78,6 +78,7 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
         let symbols = input_processor::get_symbols(input);
+        let mut errors = String::new();
 
         let mut i = 2;
         for child in table_clone.get_children() {
@@ -89,16 +90,28 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         table_clone.attach(&category, 2, 0, 1, 1);
         table_clone.attach(&scope, 3, 0, 1, 1);
         for symbol in symbols {
-            let (token, data_type, category, scope) = grid_items(symbol);
-            table_clone.attach(&token, 0, i, 1, 1);
-            table_clone.attach(&data_type, 1, i, 1, 1);
-            table_clone.attach(&category, 2, i, 1, 1);
-            table_clone.attach(&scope, 3, i, 1, 1);
-            i += 1;
+            match symbol.category {
+                Category::NONE => {
+                    errors.push_str(&format!(
+                        "Unrecognized token \"{}\" at {}, {}",
+                        symbol.token,
+                        symbol.row.to_string(),
+                        symbol.column.to_string()
+                    ));
+                }
+                _ => {
+                    let (token, data_type, category, scope) = grid_items(symbol);
+                    table_clone.attach(&token, 0, i, 1, 1);
+                    table_clone.attach(&data_type, 1, i, 1, 1);
+                    table_clone.attach(&category, 2, i, 1, 1);
+                    table_clone.attach(&scope, 3, i, 1, 1);
+                    i += 1;
+                }
+            }
         }
         table_clone.show_all();
 
-        error_buffer.set_text("Some test");
+        error_buffer.set_text(errors.as_str());
         errors_clone.set_buffer(&error_buffer);
     });
 }

@@ -4,8 +4,8 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
     let mut lexems: Vec<InputSlice> = Vec::new();
     let mut x0 = 0;
     let mut x1 = 0;
-    let mut column = 0;
-    let mut row = 0;
+    let mut column = 1;
+    let mut row = 1;
     let len = input.len();
     let mut chars = input.chars();
     let mut skip_line = false;
