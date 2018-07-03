@@ -26,9 +26,10 @@ fn find_category(lexem: &mut Lexem) {
         Category::NONE
     });
 
-    let (is_value, data_type) = value::is_value(&mut token.clone());
+    let (is_value, data_type, size) = value::is_value(&mut token.clone());
     if is_value {
         lexem.set_data_type(data_type);
+        lexem.set_size(size);
         lexem.set_category(Category::VALUE);
     }
 }

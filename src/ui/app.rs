@@ -86,19 +86,21 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         for child in table_clone.get_children() {
             table_clone.remove(&child);
         }
-        let (token, data_type, category, scope) = grid_headers();
+        let (token, data_type, data_size, category, scope) = grid_headers();
         table_clone.attach(&token, 0, 0, 1, 1);
         table_clone.attach(&data_type, 1, 0, 1, 1);
-        table_clone.attach(&category, 2, 0, 1, 1);
-        table_clone.attach(&scope, 3, 0, 1, 1);
+        table_clone.attach(&data_size, 2, 0, 1, 1);
+        table_clone.attach(&category, 3, 0, 1, 1);
+        table_clone.attach(&scope, 4, 0, 1, 1);
         for (token, symbol) in symbol_table {
             println!("{}", token.to_string());
 
-            let (token, data_type, category, scope) = grid_items(symbol);
+            let (token, data_type, data_size, category, scope) = grid_items(symbol);
             table_clone.attach(&token, 0, i, 1, 1);
             table_clone.attach(&data_type, 1, i, 1, 1);
-            table_clone.attach(&category, 2, i, 1, 1);
-            table_clone.attach(&scope, 3, i, 1, 1);
+            table_clone.attach(&data_size, 2, i, 1, 1);
+            table_clone.attach(&category, 3, i, 1, 1);
+            table_clone.attach(&scope, 4, i, 1, 1);
             i += 1;
         }
         for err in errors {
@@ -111,16 +113,17 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
     });
 }
 
-fn grid_headers() -> (Label, Label, Label, Label) {
+fn grid_headers() -> (Label, Label, Label, Label, Label) {
     let token = Label::new("TOKEN");
     let data_type = Label::new("DATA TYPE");
+    let data_size = Label::new("SIZE");
     let category = Label::new("CATEGORY");
     let scope = Label::new("SCOPE");
 
-    (token, data_type, category, scope)
+    (token, data_type, data_size, category, scope)
 }
 
-fn grid_items(symbol: Lexem) -> (Label, Label, Label, Label) {
+fn grid_items(symbol: Lexem) -> (Label, Label, Label, Label, Label) {
     let token = Label::new(symbol.token.as_str());
     let data_type = Label::new(match symbol.data_type {
         DataType::NONE => "-",
@@ -130,6 +133,7 @@ fn grid_items(symbol: Lexem) -> (Label, Label, Label, Label) {
         DataType::CHAR => "char",
         DataType::STR => "str",
     });
+    let data_size = Label::new(symbol.size.to_string().as_str());
     let category = Label::new(match symbol.category {
         Category::NONE => "-",
         Category::KEYWORD => "keyword",
@@ -140,5 +144,5 @@ fn grid_items(symbol: Lexem) -> (Label, Label, Label, Label) {
     });
     let scope = Label::new(symbol.scope.as_str());
 
-    (token, data_type, category, scope)
+    (token, data_type, data_size, category, scope)
 }

@@ -68,6 +68,7 @@ impl fmt::Display for Category {
 pub struct Lexem {
     pub token: String,
     pub data_type: DataType,
+    pub size: i8,
     pub category: Category,
     pub scope: String,
     pub column: u32,
@@ -80,6 +81,7 @@ impl Lexem {
             token: token,
             data_type: DataType::NONE,
             category: Category::NONE,
+            size: -1,
             scope: String::from(""),
             column: column,
             row: row,
@@ -88,6 +90,10 @@ impl Lexem {
 
     fn set_data_type(&mut self, data_type: DataType) {
         self.data_type = data_type;
+    }
+
+    fn set_size(&mut self, size: i8) {
+        self.size = size;
     }
 
     fn set_category(&mut self, category: Category) {
