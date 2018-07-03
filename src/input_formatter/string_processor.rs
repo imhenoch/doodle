@@ -11,13 +11,27 @@ pub fn transform_string_to_collection(input: String) -> Vec<InputSlice> {
     let mut skip_line = false;
     let mut new_line = false;
     let mut is_string = false;
+    let mut is_escape = false;
+    let mut aux = 0;
 
     while x1 < len {
         let c = chars.next().unwrap();
-        if c == '"' {
+        if is_escape && aux == 0 {
+            is_escape = false;
+        }
+        if c == '"' && !is_escape {
             is_string = !is_string;
+        } else if is_string {
+            aux -= 1;
+        }
+        if c == '\\' {
+            is_escape = true;
+            aux = 1;
         }
         if !is_string && is_limiter(&c) {
+            if is_escape {
+                is_escape = false;
+            }
             if x0 != x1 {
                 let s = input.get(x0..x1).unwrap();
                 if s == "//" {

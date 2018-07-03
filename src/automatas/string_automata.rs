@@ -14,12 +14,22 @@ fn q1(token: &mut String) -> bool {
         false
     } else {
         match token.remove(0) {
-            '"' => q2(token),
+            '\\' => q2(token),
+            '"' => q3(token),
             _ => q1(token),
         }
     }
 }
 
 fn q2(token: &mut String) -> bool {
+    if token.is_empty() {
+        false
+    } else {
+        token.remove(0);
+        q1(token)
+    }
+}
+
+fn q3(token: &mut String) -> bool {
     token.is_empty()
 }
