@@ -9,7 +9,7 @@ pub fn is_operator(token: &String) -> bool {
     }
 }
 
-fn get_operators() -> [String; 16] {
+fn get_operators() -> [String; 15] {
     [
         String::from("+"),
         String::from("-"),
@@ -21,7 +21,6 @@ fn get_operators() -> [String; 16] {
         String::from("&&"),
         String::from("||"),
         String::from("=="),
-        String::from("!"),
         String::from("!="),
         String::from(">"),
         String::from("<"),
