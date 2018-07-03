@@ -8,6 +8,7 @@ use gtk::{
 
 use automatas::{input_processor, Category, DataType, Lexem};
 use input_formatter::string_processor;
+use symbol_table::get_symbol_table;
 
 pub fn build_ui(application: &gtk::Application) {
     let window = ApplicationWindow::new(application);
@@ -78,7 +79,8 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
         let symbols = input_processor::get_symbols(input);
-        let mut errors = String::new();
+        let (symbol_table, errors) = get_symbol_table(symbols);
+        let mut error = String::new();
 
         let mut i = 2;
         for child in table_clone.get_children() {
@@ -89,29 +91,22 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         table_clone.attach(&data_type, 1, 0, 1, 1);
         table_clone.attach(&category, 2, 0, 1, 1);
         table_clone.attach(&scope, 3, 0, 1, 1);
-        for symbol in symbols {
-            match symbol.category {
-                Category::NONE => {
-                    errors.push_str(&format!(
-                        "Unrecognized token \"{}\" at {}, {}",
-                        symbol.token,
-                        symbol.row.to_string(),
-                        symbol.column.to_string()
-                    ));
-                }
-                _ => {
-                    let (token, data_type, category, scope) = grid_items(symbol);
-                    table_clone.attach(&token, 0, i, 1, 1);
-                    table_clone.attach(&data_type, 1, i, 1, 1);
-                    table_clone.attach(&category, 2, i, 1, 1);
-                    table_clone.attach(&scope, 3, i, 1, 1);
-                    i += 1;
-                }
-            }
+        for (token, symbol) in symbol_table {
+            println!("{}", token.to_string());
+
+            let (token, data_type, category, scope) = grid_items(symbol);
+            table_clone.attach(&token, 0, i, 1, 1);
+            table_clone.attach(&data_type, 1, i, 1, 1);
+            table_clone.attach(&category, 2, i, 1, 1);
+            table_clone.attach(&scope, 3, i, 1, 1);
+            i += 1;
+        }
+        for err in errors {
+            error.push_str(&format!("{}\n", err.as_str()));
         }
         table_clone.show_all();
 
-        error_buffer.set_text(errors.as_str());
+        error_buffer.set_text(error.as_str());
         errors_clone.set_buffer(&error_buffer);
     });
 }

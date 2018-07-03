@@ -5,6 +5,7 @@ use std::env::args;
 
 mod automatas;
 mod input_formatter;
+mod symbol_table;
 mod ui;
 
 fn main() {
