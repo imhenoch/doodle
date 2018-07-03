@@ -8,7 +8,7 @@ pub fn get_symbols(input: Vec<InputSlice>) -> Vec<Lexem> {
         find_category(&mut lexem);
         symbols.push(lexem);
     }
-    scope::set_scope(&mut symbols);
+    // scope::set_scope(&mut symbols);
     symbols
 }
 

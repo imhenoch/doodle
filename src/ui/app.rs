@@ -2,9 +2,11 @@ extern crate gio;
 extern crate gtk;
 
 use gtk::prelude::*;
-use gtk::{ApplicationWindow, Box, Button, Grid, Orientation, PackType, ScrolledWindow, TextView};
+use gtk::{
+    ApplicationWindow, Box, Button, Grid, Label, Orientation, PackType, ScrolledWindow, TextView,
+};
 
-use automatas::input_processor;
+use automatas::{input_processor, Category, DataType, Lexem};
 use input_formatter::string_processor;
 
 pub fn build_ui(application: &gtk::Application) {
@@ -44,13 +46,16 @@ fn text_view(container: &Box) -> TextView {
 
 fn log(container: &Box) -> (Grid, TextView) {
     let v_container = Box::new(Orientation::Vertical, 10);
-    let scroll = ScrolledWindow::new(None, None);
+    let errors_scroll = ScrolledWindow::new(None, None);
+    let table_scroll = ScrolledWindow::new(None, None);
     let table = Grid::new();
     let errors = TextView::new();
 
-    scroll.add(&errors);
-    v_container.add(&table);
-    v_container.add(&scroll);
+    table_scroll.add(&table);
+    errors_scroll.add(&errors);
+    v_container.add(&table_scroll);
+    v_container.add(&errors_scroll);
+    table.set_column_homogeneous(true);
 
     v_container.set_homogeneous(true);
     container.add(&v_container);
@@ -73,11 +78,59 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
         let symbols = input_processor::get_symbols(input);
-        for symbol in symbols {
-            println!("{}", symbol);
+
+        let mut i = 2;
+        for child in table_clone.get_children() {
+            table_clone.remove(&child);
         }
+        let (token, data_type, category, scope) = grid_headers();
+        table_clone.attach(&token, 0, 0, 1, 1);
+        table_clone.attach(&data_type, 1, 0, 1, 1);
+        table_clone.attach(&category, 2, 0, 1, 1);
+        table_clone.attach(&scope, 3, 0, 1, 1);
+        for symbol in symbols {
+            let (token, data_type, category, scope) = grid_items(symbol);
+            table_clone.attach(&token, 0, i, 1, 1);
+            table_clone.attach(&data_type, 1, i, 1, 1);
+            table_clone.attach(&category, 2, i, 1, 1);
+            table_clone.attach(&scope, 3, i, 1, 1);
+            i += 1;
+        }
+        table_clone.show_all();
 
         error_buffer.set_text("Some test");
         errors_clone.set_buffer(&error_buffer);
     });
+}
+
+fn grid_headers() -> (Label, Label, Label, Label) {
+    let token = Label::new("TOKEN");
+    let data_type = Label::new("DATA TYPE");
+    let category = Label::new("CATEGORY");
+    let scope = Label::new("SCOPE");
+
+    (token, data_type, category, scope)
+}
+
+fn grid_items(symbol: Lexem) -> (Label, Label, Label, Label) {
+    let token = Label::new(symbol.token.as_str());
+    let data_type = Label::new(match symbol.data_type {
+        DataType::NONE => "-",
+        DataType::INT => "int",
+        DataType::FLOAT => "float",
+        DataType::BOOL => "bool",
+        DataType::CHAR => "char",
+        DataType::STR => "str",
+    });
+    let category = Label::new(match symbol.category {
+        Category::NONE => "-",
+        Category::KEYWORD => "keyword",
+        Category::ID => "id",
+        Category::OPERATOR => "operator",
+        Category::VALUE => "value",
+        Category::LIMITER => "limiter",
+    });
+    let scope = Label::new(symbol.scope.as_str());
+
+    (token, data_type, category, scope)
 }
