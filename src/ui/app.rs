@@ -52,6 +52,8 @@ fn log(container: &Box) -> (Grid, TextView) {
     let table = Grid::new();
     let errors = TextView::new();
 
+    errors.set_editable(false);
+
     table_scroll.add(&table);
     errors_scroll.add(&errors);
     v_container.add(&table_scroll);

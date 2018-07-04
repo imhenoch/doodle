@@ -1,4 +1,4 @@
-pub mod hash;
+mod hash;
 
 use automatas::{Category, Lexem};
 use std::collections::HashMap;
@@ -11,7 +11,7 @@ pub fn get_symbol_table(symbols: Vec<Lexem>) -> (HashMap<u64, Lexem>, Vec<String
         match symbol.category {
             Category::NONE => {
                 errors.push(format!(
-                    "Unrecognized token \"{}\" at {}, {}",
+                    "Unrecognized token \"{}\" at line {}, {}",
                     symbol.token, symbol.row, symbol.column,
                 ));
             }
