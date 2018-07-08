@@ -16,7 +16,7 @@ pub fn get_symbol_table(symbols: Vec<Lexem>) -> (HashMap<u64, Lexem>, Vec<String
                 ));
             }
             _ => {
-                let hash = hash::hash(&symbol.token);
+                let hash = hash::hash(&format!("{}{}", symbol.token, symbol.scope));
                 if !hashmap.contains_key(&hash) {
                     hashmap.insert(hash, symbol);
                 }
