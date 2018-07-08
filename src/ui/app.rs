@@ -81,7 +81,7 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         let text = buffer.get_text(&start, &end, true);
         let input = string_processor::transform_string_to_collection(text.expect(""));
         let symbols = input_processor::get_symbols(input);
-        let (symbol_table, errors) = get_symbol_table(symbols);
+        let (symbol_table, errors) = get_symbol_table(&symbols);
         let mut error = String::new();
 
         let mut i = 2;

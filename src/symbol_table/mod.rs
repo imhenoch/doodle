@@ -3,7 +3,7 @@ mod hash;
 use automatas::{Category, Lexem};
 use std::collections::HashMap;
 
-pub fn get_symbol_table(symbols: Vec<Lexem>) -> (HashMap<u64, Lexem>, Vec<String>) {
+pub fn get_symbol_table(symbols: &Vec<Lexem>) -> (HashMap<u64, Lexem>, Vec<String>) {
     let mut hashmap = HashMap::new();
     let mut errors = Vec::new();
 
