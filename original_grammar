@@ -1,0 +1,50 @@
+<code> ::= { <function> }
+
+<function> ::= "fn" <identifier> "(" <parameters> ")" [ "->" <data_type> ] "{" { <declaration> | <expression> } [ <return> ] "}"
+
+<parameters> ::= [ <identifier> ":" <data_type> [ "," <parameters>] ]
+
+<data_type> ::= "int"
+              | "float"
+              | "char"
+              | "str"
+              | "bool"
+
+
+<declaration> :: = "let" [ "mutable" ] <variable_declaration> ";"
+
+<variable_declaration> ::= <identifier> ":" <data_type> "=" <operation> [ "," <variable_declaration> ]
+
+<expression> ::= <assignment> | <flow_control> | <function_call>
+
+<assignment> ::= <identifier> "=" <operation> ";"
+
+<operation> ::= ( <value> | <identifier> ) [ <operator> <operation> ]
+
+<operator> ::= "+"
+             | "-"
+             | "*"
+             | "/"
+             | "%"
+             | "^"
+             | "&&"
+             | "||"
+             | "=="
+             | "!="
+             | ">"
+             | "<"
+             | ">="
+             | "<="
+
+<flow_control> ::= <condition> | <for_loop> | <while_loop>
+
+<condition> ::= "if" <operation> "{" { <expression> } "}" "else" "{" { <expression> } "}"
+
+<for_loop> ::= "for" <identifier> "in" <value> "to" <value> "{" { <expression> } "}"
+<while_loop> ::= "while" <operation> "{" { <expression> } "}"
+
+<function_call> ::= <identifier> "(" [ <function_params> ] ")" ";"
+
+<function_params> ::= <operation> [ "," <function_params> ]
+
+<return> ::= "ret" <operation> ";"

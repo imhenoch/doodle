@@ -1,0 +1,48 @@
+// $ es caracter vacio por ahora
+
+<code>  ->  <function> <code> | $
+<function>  ->  <function_declaration> <function_body>
+<function_declaration>  ->  <function_naming> <function_params>
+<function_naming>  ->  <fn> <identifier>
+<function_params>  ->  <oparenthesis> <params> <cparenthesis> | <oparenthesis> <cparenthesis>
+<params>  ->  <variable> | <variable> <comma> <params>
+<function_body>  ->  <obracket> <function_content> <cbracket>
+<function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <flow_control>
+<variable_declaration>  ->  <let> <variables> | <let> <mut> <variables>
+<variables>  ->  <variable> <comma> <variables> | <variable> <variable_assignment> <variables> | <variable> | <variable> <variable_assignment>
+<variable_assignment>  ->  <assignment> <comma> | <assignment>
+<variable>  ->  <identifier> <variable_type>
+<variable_type>  ->  <colon> <data_type>
+<assignment>  ->  <identifier> <equals> <operation>
+<operation>  ->  <value> <operator> <operation> | <identifier> <operator> <operation> | value | <identifier>
+<operator>  ->  + | * | / | % | ^ | && | || |== | != | < | >= |<=
+<function_call>  ->  <identifier> <call_body>
+<call_body>  ->  <oparenthesis> <call_params> <cparenthesis> | <oparenthesis> <cparenthesis>
+<call_params>  ->  <operation> <comma> <call_params> | <operation>
+<flow_control>  ->  <if_declaration> <flow_body> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
+<if_declaration>  ->  <if> <operation>
+<for_declaration>  ->  <for> <for_condition>
+<for_condition>  ->  <identifier> <in> <range>
+<while_declaration>  ->  <while> <operation>
+<range>  ->  <value> <to> <value> | <identifier> <to> <identifier> | <value> <to> <identifier> | <identifier> <to> <value>
+<flow_body>  ->  <obracket> <flow_content> <cbracket> | <obracket> <cbracket>
+<flow_content>  ->  <assignment> <semicolon> | <function_call> <semicolon> | <flow_control>
+<data_type>  ->  int | float | char | str | bool
+<fn>  ->  fn
+<let>  ->  let
+<mut>  ->  mut
+<if>  ->  if
+<for>  ->  for
+<while>  ->  while
+<in>  ->  in
+<to>  ->  to
+<identifier>  ->  identifier
+<value>  ->  value
+<oparenthesis>  ->  (
+<cparenthesis>  ->  )
+<obracket>  ->  {
+<cbracket>  ->  }
+<colon>  ->  :
+<semicolon>  ->  ;
+<comma>  ->  ,
+<equals>  ->  =
