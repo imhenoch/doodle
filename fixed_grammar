@@ -1,6 +1,6 @@
 // $ is void
 
-<code>  ->  <function_declaration> <function_body>
+<code>  ->  <function_declaration> <function_body> | $
 <function_declaration>  ->  <function_naming> <function_params>
 <function_naming>  ->  <fn> <identifier>
 <function_params>  ->  <parenthesis_params> <cparenthesis> | <oparenthesis> <cparenthesis>
@@ -10,8 +10,7 @@
 <function_closure>  ->  <cbracket> <code> | }
 <bracket_function>  ->  <obracket> <function_content>
 <function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
-<variable_declaration>  ->  <let> <variables> | <let_mut> <variables>
-<let_mut>  ->  <let> <mut>
+<variable_declaration>  ->  <let> <variables> | <lem> <variables>
 <variables>  ->  <variable_comma> <variables> | <var_assignment> <variables> | <identifier> <variable_type> | <variable> <variable_assignment>
 <var_assignment>  ->  <variable> <variable_assignment>
 <variable_assignment>  ->  <assignment> <comma> | <id_equals> <operation>
@@ -44,7 +43,7 @@
 <operator_char>  ->  + | * | / | % | ^ | && | || | == | != | > | < | >= | <=
 <fn>  ->  fn
 <let>  ->  let
-<mut>  ->  mut
+<lem>  ->  lem
 <if>  ->  if
 <else>  ->  else
 <for>  ->  for

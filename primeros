@@ -1,6 +1,6 @@
 // $ is void
 
-PRIMEROS(<code>)  =  { fn }
+PRIMEROS(<code>)  =  { fn, $ }
 PRIMEROS(<function_declaration>)  =  { fn }
 PRIMEROS(<function_naming>)  =  { fn }
 PRIMEROS(<function_params>)  =  { ( }
@@ -9,9 +9,8 @@ PRIMEROS(<params>)  =  { identifier }
 PRIMEROS(<function_body>)  =  { { }
 PRIMEROS(<function_closure>)  ->  { } }
 PRIMEROS(<bracket_function>)  =  { { }
-PRIMEROS(<function_content>)  =  { let, identifier, if, for, while }
-PRIMEROS(<variable_declaration>)  =  { let }
-PRIMEROS(<let_mut>)  =  { let }
+PRIMEROS(<function_content>)  =  { let, lem, identifier, if, for, while }
+PRIMEROS(<variable_declaration>)  =  { let, lem }
 PRIMEROS(<variables>)  =  { identifier }
 PRIMEROS(<var_assignment>)  =  { identifier }
 PRIMEROS(<variable_assignment>)  =  { identifier }
@@ -44,7 +43,7 @@ PRIMEROS(<data_type>)  =  { int, float, char, str, bool }
 PRIMEROS(<operator_char>)  =  { +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
 PRIMEROS(<fn>)  =  { fn }
 PRIMEROS(<let>)  =  { let }
-PRIMEROS(<mut>)  =  { mut }
+PRIMEROS(<lem>)  =  { lem }
 PRIMEROS(<if>)  =  { if }
 PRIMEROS(<else>)  =  { else }
 PRIMEROS(<for>)  =  { for }
