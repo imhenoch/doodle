@@ -9,7 +9,7 @@
 <function_body>  ->  <bracket_function> <function_closure>
 <function_closure>  ->  <cbracket> <code> | }
 <bracket_function>  ->  <obracket> <function_content>
-<function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <flow_body> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
+<function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_declaration>  ->  <let> <variables> | <let_mut> <variables>
 <let_mut>  ->  <let> <mut>
 <variables>  ->  <variable_comma> <variables> | <var_assignment> <variables> | <identifier> <variable_type> | <variable> <variable_assignment>
@@ -26,7 +26,9 @@
 <parenthesis_call>  ->  <oparenthesis> <call_params>
 <call_params>  ->  <operation_comma> <call_params> | <value> <operator> | <identifier> <operator> | value | identifier
 <operation_comma>  ->  <operation> <comma>
-<if_declaration>  ->  <if> <operation>
+<if_declaration>  ->  <if_condition> <flow_body>
+<if_condition>  ->  <if> <operation>
+<else_declaration>  ->  <else> <flow_body>
 <for_declaration>  ->  <for> <for_condition>
 <for_condition>  ->  <id_in> <range>
 <id_in>  ->  <identifier> <in>
@@ -36,7 +38,7 @@
 <while_declaration>  ->  <while> <operation>
 <flow_body>  ->  <bracket_flow> <cbracket> | <obracket> <cbracket>
 <bracket_flow>  ->  <obracket> <flow_content>
-<flow_content>  ->  <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <flow_body> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
+<flow_content>  ->  <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_comma>  ->  <variable> <comma>
 <data_type>  ->  int | float | char | str | bool
 <operator_char>  ->  + | * | / | % | ^ | && | || | == | != | > | < | >= | <=
@@ -44,6 +46,7 @@
 <let>  ->  let
 <mut>  ->  mut
 <if>  ->  if
+<else>  ->  else
 <for>  ->  for
 <while>  ->  while
 <in>  ->  in
