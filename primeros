@@ -1,0 +1,60 @@
+// $ is void
+
+PRIMEROS(<code>)  =  { fn }
+PRIMEROS(<function_declaration>)  =  { fn }
+PRIMEROS(<function_naming>)  =  { fn }
+PRIMEROS(<function_params>)  =  { ( }
+PRIMEROS(<parenthesis_params>)  =  { ( }
+PRIMEROS(<params>)  =  { identifier }
+PRIMEROS(<function_body>)  =  { { }
+PRIMEROS(<function_closure>)  ->  { } }
+PRIMEROS(<bracket_function>)  =  { { }
+PRIMEROS(<function_content>)  =  { let, identifier, if, for, while }
+PRIMEROS(<variable_declaration>)  =  { let }
+PRIMEROS(<let_mut>)  =  { let }
+PRIMEROS(<variables>)  =  { identifier }
+PRIMEROS(<var_assignment>)  =  { identifier }
+PRIMEROS(<variable_assignment>)  =  { identifier }
+PRIMEROS(<variable>)  =  { identifier }
+PRIMEROS(<variable_type>)  =  { : }
+PRIMEROS(<assignment>)  =  { identifier }
+PRIMEROS(<id_equals>)  =  { identifier }
+PRIMEROS(<operation>)  =  { value, identifier }
+PRIMEROS(<operator>)  =  { +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
+PRIMEROS(<function_call>)  =  { identifier }
+PRIMEROS(<call_body>)  =  { ( }
+PRIMEROS(<parenthesis_call>)  =  { ( }
+PRIMEROS(<call_params>)  =  { value, identifier }
+PRIMEROS(<operation_comma>)  =  { value, identifier }
+PRIMEROS(<if_declaration>)  =  { if }
+PRIMEROS(<for_declaration>)  =  { for }
+PRIMEROS(<for_condition>)  =  { identifier }
+PRIMEROS(<id_in>)  =  { identifier }
+PRIMEROS(<range>)  =  { value, identifier }
+PRIMEROS(<value_to>)  =  { value }
+PRIMEROS(<identifier_to>)  =  { identifier }
+PRIMEROS(<while_declaration>)  =  { while }
+PRIMEROS(<flow_body>)  =  { { }
+PRIMEROS(<bracket_flow>)  =  { { }
+PRIMEROS(<flow_content>)  =  { identifier, if, for, while }
+PRIMEROS(<variable_comma>)  =  { identifier }
+PRIMEROS(<data_type>)  =  { int, float, char, str, bool }
+PRIMEROS(<operator_char>)  =  { +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
+PRIMEROS(<fn>)  =  { fn }
+PRIMEROS(<let>)  =  { let }
+PRIMEROS(<mut>)  =  { mut }
+PRIMEROS(<if>)  =  { if }
+PRIMEROS(<for>)  =  { for }
+PRIMEROS(<while>)  =  { while }
+PRIMEROS(<in>)  =  { in }
+PRIMEROS(<to>)  =  { to }
+PRIMEROS(<identifier>)  =  { identifier }
+PRIMEROS(<value>)  =  { value }
+PRIMEROS(<oparenthesis>)  =  { ( }
+PRIMEROS(<cparenthesis>)  =  { ) }
+PRIMEROS(<obracket>)  =  { { }
+PRIMEROS(<cbracket>)  =  { } }
+PRIMEROS(<colon>)  =  { : }
+PRIMEROS(<semicolon>)  =  { ; }
+PRIMEROS(<comma>)  =  { , }
+PRIMEROS(<equals>)  =  { = }

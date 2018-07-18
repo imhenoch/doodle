@@ -1,13 +1,13 @@
 // $ is void
 
-<code>  ->  <function> <code> | $
-<function>  ->  <function_declaration> <function_body>
+<code>  ->  <function_declaration> <function_body>
 <function_declaration>  ->  <function_naming> <function_params>
 <function_naming>  ->  <fn> <identifier>
-<function_params>  ->  ) | <oparenthesis> <cparenthesis>
+<function_params>  ->  <parenthesis_params> <cparenthesis> | <oparenthesis> <cparenthesis>
 <parenthesis_params>  ->  <oparenthesis> <params>
 <params>  ->  <identifier> <variable_type> | <variable_comma> <params>
-<function_body>  ->  <bracket_function> <cbracket>
+<function_body>  ->  <bracket_function> <function_closure>
+<function_closure>  ->  <cbracket> <code> | }
 <bracket_function>  ->  <obracket> <function_content>
 <function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <flow_body> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_declaration>  ->  <let> <variables> | <let_mut> <variables>
@@ -39,7 +39,7 @@
 <flow_content>  ->  <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <flow_body> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_comma>  ->  <variable> <comma>
 <data_type>  ->  int | float | char | str | bool
-<operator_char>  ->  + | * | / | % | ^ | && | || | == | != | < | >= |<=
+<operator_char>  ->  + | * | / | % | ^ | && | || | == | != | > | < | >= | <=
 <fn>  ->  fn
 <let>  ->  let
 <mut>  ->  mut
