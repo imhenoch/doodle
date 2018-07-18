@@ -1,18 +1,18 @@
 // Random comment
 // Another one!
-fn add(x : int, y : int) -> int {
+fn add(x : int, y : int) : int {
   ret x + y;
 }
 
-fn sub(x : int, y : int) -> int {
+fn sub(x : int, y : int) : int {
   ret x - y;
 }
 
-fn mul(x : int, y : int) -> int {
+fn mul(x : int, y : int) : int {
   ret x * y;
 }
 
-fn div(x : int, y : int) -> int {
+fn div(x : int, y : int) : int {
   ret x / y;
 }
 
