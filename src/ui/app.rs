@@ -94,9 +94,7 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         table_clone.attach(&data_size, 2, 0, 1, 1);
         table_clone.attach(&category, 3, 0, 1, 1);
         table_clone.attach(&scope, 4, 0, 1, 1);
-        for (token, symbol) in symbol_table {
-            println!("{}", token.to_string());
-
+        for (_token, symbol) in symbol_table {
             let (token, data_type, data_size, category, scope) = grid_items(symbol);
             table_clone.attach(&token, 0, i, 1, 1);
             table_clone.attach(&data_type, 1, i, 1, 1);
@@ -125,7 +123,7 @@ fn grid_headers() -> (Label, Label, Label, Label, Label) {
     (token, data_type, data_size, category, scope)
 }
 
-fn grid_items(symbol: Lexem) -> (Label, Label, Label, Label, Label) {
+fn grid_items(symbol: &Lexem) -> (Label, Label, Label, Label, Label) {
     let token = Label::new(symbol.token.as_str());
     let data_type = Label::new(match symbol.data_type {
         DataType::NONE => "-",
