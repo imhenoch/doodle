@@ -1,6 +1,4 @@
-// $ is void
-
-<code>  ->  <code'> <code> | $
+<code>  ->  <code'> <code> | ε
 <code'>  ->  <function_declaration> <function_body>
 <function_declaration>  ->  <function_naming> <function_return>
 <function_naming>  ->  <fn_identifier> <function_param>
@@ -9,7 +7,7 @@
 <function_params>  ->  <param> <cparenthesis> | <multiple_params> <cparenthesis> | )
 <param>  ->  <identifier> <variable_type>
 <multiple_params>  ->  <vargs> <params>
-<params>  ->  <variable_comma> <params> | $
+<params>  ->  <variable_comma> <params> | ε
 <function_return>  ->  <colon> <return_type>
 <return_type>  ->  int | float | char | str | bool | nothing
 <function_body>  ->  <bracket_function> <cbracket>
@@ -18,7 +16,7 @@
 <variable_declaration>  ->  <let> <single_variable> | <lem> <single_variable> | <mlet> <multiple_variable> | <mlem> <multiple_variable>
 <single_variable>  ->  <single_variable_declaration> <assignment>
 <single_variable_declaration>  ->  <identifier> <variable_type>
-<multiple_variable>  ->  <multiple_variable_declaration> <comma_multiple> | $
+<multiple_variable>  ->  <multiple_variable_declaration> <comma_multiple> | ε
 <multiple_variable_declaration>  ->  <single_variable_declaration> <assignment>
 <comma_multiple>  ->  <comma> <multiple_variable>
 <variable>  ->  <identifier> <variable_type>
@@ -26,12 +24,12 @@
 <assignment>  ->  <id_equals> <operation>
 <id_equals>  ->  <identifier> <equals>
 <operation>  ->  <value> <operator> | <identifier> <operator>
-<operator>  ->  <operator_char> <operation> | $
+<operator>  ->  <operator_char> <operation> | ε
 <function_call>  ->  <call_identifier> <call_body>
 <call_identifier>  ->  <call> <identifier>
 <call_body>  ->  <oparenthesis> <parenthesis_call>
 <parenthesis_call>  ->  <call_params> <cparenthesis>
-<call_params>  ->  <operation_comma> <call_params> | nothing
+<call_params>  ->  <operation_comma> <call_params> | ε
 <operation_comma>  ->  <operation> <comma>
 <if_declaration>  ->  <if_condition> <flow_body>
 <if_condition>  ->  <if> <operation>
@@ -47,8 +45,8 @@
 <while_declaration>  ->  <while> <operation>
 <flow_body>  ->  <obracket> <bracket_flow>
 <bracket_flow>  ->  <flow_content> <cbracket>
-<flow_content>  ->  <flow_content'> <flow_content> | $
-<flow_content'> <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
+<flow_content>  ->  <flow_contents> <flow_content> | ε
+<flow_contents>  ->   <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_comma>  ->  <variable> <comma>
 <data_type>  ->  int | float | char | str | bool
 <nothing>  ->  nothing
