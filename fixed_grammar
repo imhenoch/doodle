@@ -7,7 +7,7 @@
 <function_params>  ->  <parenthesis_params> <cparenthesis> | <oparenthesis> <cparenthesis>
 <parenthesis_params>  ->  <oparenthesis> <params>
 <params>  ->  <identifier> <variable_type> | <variable_comma> <params>
-<function_return>  -> <colon> <data_type> | <colon> <nothing>
+<function_return>  ->  <colon> <data_type> | <colon> <nothing>
 <function_body>  ->  <bracket_function> <function_closure>
 <function_closure>  ->  <cbracket> <code> | }
 <bracket_function>  ->  <obracket> <function_content>
