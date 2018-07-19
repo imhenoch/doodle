@@ -9,7 +9,7 @@ pub fn is_keyword(token: &String) -> bool {
     }
 }
 
-fn get_keywords() -> [String; 14] {
+fn get_keywords() -> [String; 17] {
     [
         String::from("int"),
         String::from("float"),
@@ -17,7 +17,9 @@ fn get_keywords() -> [String; 14] {
         String::from("bool"),
         String::from("str"),
         String::from("let"),
-        String::from("mut"),
+        String::from("mlet"),
+        String::from("lem"),
+        String::from("mlem"),
         String::from("if"),
         String::from("else"),
         String::from("while"),
@@ -25,5 +27,6 @@ fn get_keywords() -> [String; 14] {
         String::from("to"),
         String::from("fn"),
         String::from("ret"),
+        String::from("vargs"),
     ]
 }
