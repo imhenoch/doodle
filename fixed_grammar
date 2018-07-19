@@ -1,37 +1,37 @@
 // $ is void
 
-<code>  ->  <function_declaration> <function_body> | $
+<code>  ->  <code'> <code> | $
+<code'>  ->  <function_declaration> <function_body>
 <function_declaration>  ->  <function_naming> <function_return>
-<function_naming>  ->  <fn_identifier> <function_params>
+<function_naming>  ->  <fn_identifier> <function_param>
 <fn_identifier>  ->  <fn> <identifier>
-<function_params>  ->  <parenthesis_param> <cparenthesis> | <multiple_params> <cparenthesis> | <oparenthesis> <cparenthesis>
-<parenthesis_param>  ->  <oparenthesis> <param>
+<function_param>  ->  <oparenthesis> <function_params>
+<function_params>  ->  <param> <cparenthesis> | <multiple_params> <cparenthesis> | )
 <param>  ->  <identifier> <variable_type>
-<multiple_params>  ->  <parenthesis_vargs> <params>
-<parenthesis_vargs>  ->  <oparenthesis> <vargs>
-<params>  ->  <identifier> <variable_type> | <variable_comma> <params>
-<function_return>  ->  <colon> <data_type> | <colon> <nothing>
-<function_body>  ->  <bracket_function> <function_closure>
-<function_closure>  ->  <cbracket> <code> | }
+<multiple_params>  ->  <vargs> <params>
+<params>  ->  <variable_comma> <params> | $
+<function_return>  ->  <colon> <return_type>
+<return_type>  ->  int | float | char | str | bool | nothing
+<function_body>  ->  <bracket_function> <cbracket>
 <bracket_function>  ->  <obracket> <function_content>
 <function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_declaration>  ->  <let> <single_variable> | <lem> <single_variable> | <mlet> <multiple_variable> | <mlem> <multiple_variable>
 <single_variable>  ->  <single_variable_declaration> <assignment>
 <single_variable_declaration>  ->  <identifier> <variable_type>
-<multiple_variable>  ->  <multiple_variable_declaration> <comma_multiple> | <multiple_variable_declaration>
+<multiple_variable>  ->  <multiple_variable_declaration> <comma_multiple> | $
 <multiple_variable_declaration>  ->  <single_variable_declaration> <assignment>
 <comma_multiple>  ->  <comma> <multiple_variable>
 <variable>  ->  <identifier> <variable_type>
 <variable_type>  ->  <colon> <data_type>
 <assignment>  ->  <id_equals> <operation>
 <id_equals>  ->  <identifier> <equals>
-<operation>  ->  <value> <operator> | <identifier> <operator> | value | identifier
-<operator>  ->  <operator_char> <operation>
+<operation>  ->  <value> <operator> | <identifier> <operator>
+<operator>  ->  <operator_char> <operation> | $
 <function_call>  ->  <call_identifier> <call_body>
 <call_identifier>  ->  <call> <identifier>
-<call_body>  ->  <parenthesis_call> <cparenthesis> | <oparenthesis> <cparenthesis>
-<parenthesis_call>  ->  <oparenthesis> <call_params>
-<call_params>  ->  <operation_comma> <call_params> | <value> <operator> | <identifier> <operator> | value | identifier
+<call_body>  ->  <oparenthesis> <parenthesis_call>
+<parenthesis_call>  ->  <call_params> <cparenthesis>
+<call_params>  ->  <operation_comma> <call_params> | nothing
 <operation_comma>  ->  <operation> <comma>
 <if_declaration>  ->  <if_condition> <flow_body>
 <if_condition>  ->  <if> <operation>
@@ -39,13 +39,16 @@
 <for_declaration>  ->  <for> <for_condition>
 <for_condition>  ->  <id_in> <range>
 <id_in>  ->  <identifier> <in>
-<range>  ->  <value_to> <value> | <identifier_to> <identifier> | <value_to> <identifier> | <identifier_to> <value>
+<range>  ->  <value_to> <range_value> | <identifier_to> <range_identifier>
+<range_value>  ->  value | identifier
+<range_identifier>  ->  value | identifier
 <value_to>  ->  <value> <to>
 <identifier_to>  ->  <identifier> <to>
 <while_declaration>  ->  <while> <operation>
-<flow_body>  ->  <bracket_flow> <cbracket> | <obracket> <cbracket>
-<bracket_flow>  ->  <obracket> <flow_content>
-<flow_content>  ->  <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
+<flow_body>  ->  <obracket> <bracket_flow>
+<bracket_flow>  ->  <flow_content> <cbracket>
+<flow_content>  ->  <flow_content'> <flow_content> | $
+<flow_content'> <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_comma>  ->  <variable> <comma>
 <data_type>  ->  int | float | char | str | bool
 <nothing>  ->  nothing
