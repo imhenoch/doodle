@@ -16,7 +16,7 @@ fn div(x : int, y : int) : int {
   ret x / y;
 }
 
-fn main() {
+fn main() : nothing {
   lem a : int = 5;
   mlem b : int = 6, c : int = 10;
   mlet x : int = 4, y : int = 2;
