@@ -49,7 +49,6 @@ PRIMEROS(<flow_content>)  =  { identifier, call, if, for, while, ε }
 PRIMEROS(<flow_contents>)  =  { identifier, call, if, for, while }
 PRIMEROS(<variable_comma>)  =  { identifier }
 PRIMEROS(<data_type>)  =  { int, float, char, str, bool }
-PRIMEROS(<nothing>)  =  { nothing }
 PRIMEROS(<operator_char>)  =  { +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
 PRIMEROS(<fn>)  =  { fn }
 PRIMEROS(<call>)  =  { call }
