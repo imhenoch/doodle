@@ -4,8 +4,11 @@
 <function_declaration>  ->  <function_naming> <function_return>
 <function_naming>  ->  <fn_identifier> <function_params>
 <fn_identifier>  ->  <fn> <identifier>
-<function_params>  ->  <parenthesis_params> <cparenthesis> | <oparenthesis> <cparenthesis>
-<parenthesis_params>  ->  <oparenthesis> <params>
+<function_params>  ->  <parenthesis_param> <cparenthesis> | <multiple_params> <cparenthesis> | <oparenthesis> <cparenthesis>
+<parenthesis_param>  ->  <oparenthesis> <param>
+<param>  ->  <identifier> <variable_type>
+<multiple_params>  ->  <parenthesis_vargs> <params>
+<parenthesis_vargs>  ->  <oparenthesis> <vargs>
 <params>  ->  <identifier> <variable_type> | <variable_comma> <params>
 <function_return>  ->  <colon> <data_type> | <colon> <nothing>
 <function_body>  ->  <bracket_function> <function_closure>
@@ -49,6 +52,7 @@
 <operator_char>  ->  + | * | / | % | ^ | && | || | == | != | > | < | >= | <=
 <fn>  ->  fn
 <call>  ->  call
+<vargs>  ->  vargs
 <let>  ->  let
 <mlet>  ->  mlet
 <lem>  ->  lem
