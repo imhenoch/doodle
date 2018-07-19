@@ -10,17 +10,20 @@
 <function_closure>  ->  <cbracket> <code> | }
 <bracket_function>  ->  <obracket> <function_content>
 <function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
-<variable_declaration>  ->  <let> <variables> | <lem> <variables>
-<variables>  ->  <variable_comma> <variables> | <var_assignment> <variables> | <identifier> <variable_type> | <variable> <variable_assignment>
-<var_assignment>  ->  <variable> <variable_assignment>
-<variable_assignment>  ->  <assignment> <comma> | <id_equals> <operation>
+<variable_declaration>  ->  <let> <single_variable> | <lem> <single_variable> | <mlet> <multiple_variable> | <mlem> <multiple_variable>
+<single_variable>  ->  <single_variable_declaration> <assignment>
+<single_variable_declaration>  ->  <identifier> <variable_type>
+<multiple_variable>  ->  <multiple_variable_declaration> <comma_multiple> | <multiple_variable_declaration>
+<multiple_variable_declaration>  ->  <single_variable_declaration> <assignment>
+<comma_multiple>  ->  <comma> <multiple_variable>
 <variable>  ->  <identifier> <variable_type>
 <variable_type>  ->  <colon> <data_type>
 <assignment>  ->  <id_equals> <operation>
 <id_equals>  ->  <identifier> <equals>
 <operation>  ->  <value> <operator> | <identifier> <operator> | value | identifier
 <operator>  ->  <operator_char> <operation>
-<function_call>  ->  <identifier> <call_body>
+<function_call>  ->  <call_identifier> <call_body>
+<call_identifier>  ->  <call> <identifier>
 <call_body>  ->  <parenthesis_call> <cparenthesis> | <oparenthesis> <cparenthesis>
 <parenthesis_call>  ->  <oparenthesis> <call_params>
 <call_params>  ->  <operation_comma> <call_params> | <value> <operator> | <identifier> <operator> | value | identifier
@@ -42,8 +45,11 @@
 <data_type>  ->  int | float | char | str | bool
 <operator_char>  ->  + | * | / | % | ^ | && | || | == | != | > | < | >= | <=
 <fn>  ->  fn
+<call>  ->  call
 <let>  ->  let
+<mlet>  ->  mlet
 <lem>  ->  lem
+<mlem>  ->  mlem
 <if>  ->  if
 <else>  ->  else
 <for>  ->  for
