@@ -49,7 +49,7 @@
 <flow_contents>  ->   <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
 <variable_comma>  ->  <variable> <comma>
 <data_type>  ->  int | float | char | str | bool
-<operator_char>  ->  + | * | / | % | ^ | && | || | == | != | > | < | >= | <=
+<operator_char>  ->  + | - | * | / | % | ^ | && | || | == | != | > | < | >= | <=
 <fn>  ->  fn
 <call>  ->  call
 <vargs>  ->  vargs

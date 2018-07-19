@@ -24,7 +24,7 @@ PRIMEROS(<variable_type>)  =  { : }
 PRIMEROS(<assignment>)  =  { identifier }
 PRIMEROS(<id_equals>)  =  { identifier }
 PRIMEROS(<operation>)  =  { value, identifier }
-PRIMEROS(<operator>)  =  { +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <=, ε }
+PRIMEROS(<operator>)  =  { +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <=, ε }
 PRIMEROS(<function_call>)  =  { call }
 PRIMEROS(<call_identifier>)  =  { call }
 PRIMEROS(<call_body>)  =  { ( }
@@ -49,7 +49,7 @@ PRIMEROS(<flow_content>)  =  { identifier, call, if, for, while, ε }
 PRIMEROS(<flow_contents>)  =  { identifier, call, if, for, while }
 PRIMEROS(<variable_comma>)  =  { identifier }
 PRIMEROS(<data_type>)  =  { int, float, char, str, bool }
-PRIMEROS(<operator_char>)  =  { +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
+PRIMEROS(<operator_char>)  =  { +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
 PRIMEROS(<fn>)  =  { fn }
 PRIMEROS(<call>)  =  { call }
 PRIMEROS(<vargs>)  =  { vargs }

@@ -63,8 +63,8 @@ SIGUIENTES(<for>)  =  { identifier }
 SIGUIENTES(<while>)  =  { value, identifier }
 SIGUIENTES(<in>)  =  { value, identifier }
 SIGUIENTES(<to>)  =  { value, identifier }
-SIGUIENTES(<identifier>)  =  { to, in, ε, +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <=, =, :, ( }
-SIGUIENTES(<value>)  =  { to, ε, +, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
+SIGUIENTES(<identifier>)  =  { to, in, ε, +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <=, =, :, ( }
+SIGUIENTES(<value>)  =  { to, ε, +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
 SIGUIENTES(<oparenthesis>)  =  { ε, valye, identifier, ), vargs }
 SIGUIENTES(<cparenthesis>)  =  { ;, : }
 SIGUIENTES(<obracket>)  =  { ε, identifier, if, while, call, for, let, mlet, lem, mlem }
