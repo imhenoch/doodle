@@ -9,6 +9,7 @@ use gtk::{
 use automatas::{input_processor, Category, DataType, Lexem};
 use input_formatter::string_processor;
 use symbol_table::get_symbol_table;
+use syntax::syntax_analysis;
 
 pub fn build_ui(application: &gtk::Application) {
     let window = ApplicationWindow::new(application);
@@ -108,8 +109,12 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         }
         table_clone.show_all();
 
-        error_buffer.set_text(error.as_str());
-        errors_clone.set_buffer(&error_buffer);
+        if error.is_empty() {
+            syntax_analysis(&symbols);
+        } else {
+            error_buffer.set_text(error.as_str());
+            errors_clone.set_buffer(&error_buffer);
+        }
     });
 }
 
