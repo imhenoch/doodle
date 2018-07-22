@@ -3,22 +3,19 @@
 <function_declaration>  ->  <function_naming> <function_return>
 <function_naming>  ->  <fn_identifier> <function_param>
 <fn_identifier>  ->  <fn> <identifier>
-<function_param>  ->  <oparenthesis> <function_params>
-<function_params>  ->  <param> <cparenthesis> | <multiple_params> <cparenthesis> | )
-<param>  ->  <identifier> <variable_type>
-<multiple_params>  ->  <vargs> <params>
-<params>  ->  <variable_comma> <params> | ε
-<function_return>  ->  <colon> <return_type>
-<return_type>  ->  int | float | char | str | bool | nothing
+<function_param>  ->  <oparenthesis> <function_params> | ε
+<function_params>  ->  <params> <cparenthesis> | )
+<params>  ->  <variable> <params'>
+<params'>  ->  <comma_variable> <params> | ε
+<comma_variable>  ->  <variable> <comma>
+<function_return>  ->  <colon> <return_type> | ε
+<return_type>  ->  int | float | char | str | bool
 <function_body>  ->  <bracket_function> <cbracket>
 <bracket_function>  ->  <obracket> <function_content>
-<function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
-<variable_declaration>  ->  <let> <single_variable> | <lem> <single_variable> | <mlet> <multiple_variable> | <mlem> <multiple_variable>
-<single_variable>  ->  <single_variable_declaration> <assignment>
-<single_variable_declaration>  ->  <identifier> <variable_type>
-<multiple_variable>  ->  <multiple_variable_declaration> <comma_multiple> | ε
-<multiple_variable_declaration>  ->  <single_variable_declaration> <assignment>
-<comma_multiple>  ->  <comma> <multiple_variable>
+<function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body> | <ret> <return>
+<variable_declaration>  ->  <let> <multiple_variable> | <lem> <multiple_variable>
+<single_variable>  ->  <variable> <assignment>
+<multiple_variable>  ->  <single_variable> <multiple_variable>
 <variable>  ->  <identifier> <variable_type>
 <variable_type>  ->  <colon> <data_type>
 <assignment>  ->  <id_equals> <operation>
@@ -27,10 +24,10 @@
 <operator>  ->  <operator_char> <operation> | ε
 <function_call>  ->  <call_identifier> <call_body>
 <call_identifier>  ->  <call> <identifier>
-<call_body>  ->  <oparenthesis> <parenthesis_call>
+<call_body>  ->  <oparenthesis> <parenthesis_call> | ε
 <parenthesis_call>  ->  <call_params> <cparenthesis>
-<call_params>  ->  <operation_comma> <call_params> | ε
-<operation_comma>  ->  <operation> <comma>
+<call_params>  ->  <operation> <multiple_call_params>
+<multiple_call_params>  ->  <comma> <multiple_call_params> | ε
 <if_declaration>  ->  <if_condition> <flow_body>
 <if_condition>  ->  <if> <operation>
 <else_declaration>  ->  <else> <flow_body>
@@ -47,22 +44,20 @@
 <bracket_flow>  ->  <flow_content> <cbracket>
 <flow_content>  ->  <flow_contents> <flow_content> | ε
 <flow_contents>  ->   <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
-<variable_comma>  ->  <variable> <comma>
+<return>  ->  <operation> <semicolon>
 <data_type>  ->  int | float | char | str | bool
 <operator_char>  ->  + | - | * | / | % | ^ | && | || | == | != | > | < | >= | <=
 <fn>  ->  fn
 <call>  ->  call
-<vargs>  ->  vargs
 <let>  ->  let
-<mlet>  ->  mlet
 <lem>  ->  lem
-<mlem>  ->  mlem
 <if>  ->  if
 <else>  ->  else
 <for>  ->  for
 <while>  ->  while
 <in>  ->  in
 <to>  ->  to
+<ret>  ->  ret
 <identifier>  ->  identifier
 <value>  ->  value
 <oparenthesis>  ->  (
