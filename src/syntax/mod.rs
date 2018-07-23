@@ -1,5 +1,7 @@
 use automatas::{Category, Lexem};
 
+mod syntax_table;
+
 pub fn syntax_analysis(symbols: &Vec<Lexem>) {
     let mut input: Vec<String> = Vec::new();
     for symbol in symbols {
@@ -19,4 +21,8 @@ pub fn syntax_analysis(symbols: &Vec<Lexem>) {
     for stuff in input {
         println!("{}", stuff);
     }
+
+    let columns = syntax_table::get_columns();
+    let rows = syntax_table::get_rows();
+    let syntax_table = syntax_table::get_syntax_table();
 }
