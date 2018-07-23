@@ -107,15 +107,47 @@ fn btn(container: &Box, text: &TextView, table: &Grid, errors: &TextView) {
         for err in errors {
             error.push_str(&format!("{}\n", err.as_str()));
         }
-        table_clone.show_all();
-
         if error.is_empty() {
-            syntax_analysis(&symbols);
+            let (stack, input, error) = syntax_analysis(&symbols);
+            i += 1;
+            let (stack_header, input_header) = syntax_header();
+            table_clone.attach(&stack_header, 0, i, 1, 1);
+            table_clone.attach(&input_header, 1, i, 1, 1);
+            i += 1;
+
+            let mut i_clone = i;
+            for s in stack {
+                table_clone.attach(&Label::new(s.as_str()), 0, i_clone, 1, 1);
+                i_clone += 1;
+            }
+
+            let mut i_clone = i;
+            for s in input {
+                table_clone.attach(&Label::new(s.as_str()), 1, i_clone, 1, 1);
+                i_clone += 1;
+            }
+
+            if error.is_empty() {
+                error_buffer.set_text("");
+                errors_clone.set_buffer(&error_buffer);
+            } else {
+                error_buffer.set_text(error.as_str());
+                errors_clone.set_buffer(&error_buffer);
+            }
         } else {
             error_buffer.set_text(error.as_str());
             errors_clone.set_buffer(&error_buffer);
         }
+
+        table_clone.show_all();
     });
+}
+
+fn syntax_header() -> (Label, Label) {
+    let stack = Label::new("Stack");
+    let input = Label::new("Input");
+
+    (stack, input)
 }
 
 fn grid_headers() -> (Label, Label, Label, Label, Label) {
