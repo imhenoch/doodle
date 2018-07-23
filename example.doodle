@@ -8,13 +8,7 @@ fn sub(x : int, y : int) : int {
   ret x - y;
 }
 
-fn mul(x : int, y : int) : int {
-  ret x * y;
-}
-
-fn div(x : int, y : int) : int {
-  ret x / y;
-}
+fn test {}
 
 fn main() {
   lem a : int = 5;
@@ -22,6 +16,7 @@ fn main() {
   let x : int = 4, y : int = 2;
   let res : int = 0;
   for i in 0 to 10 {
+    if true || false {} else {}
     if i < 5 {
       res = call add(x, y);
     } else {
