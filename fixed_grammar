@@ -12,14 +12,16 @@
 <return_type>  ->  int | float | char | str | bool
 <function_body>  ->  <bracket_function> <cbracket>
 <bracket_function>  ->  <obracket> <function_content>
-<function_content>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body> | <ret> <return>
+<function_content>  ->  <function_content'> <function_content>
+<function_contents>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body> | <ret> <return> | ε
 <variable_declaration>  ->  <let> <multiple_variable> | <lem> <multiple_variable>
 <single_variable>  ->  <variable> <assignment>
 <multiple_variable>  ->  <single_variable> <multiple_variable>
 <variable>  ->  <identifier> <variable_type>
 <variable_type>  ->  <colon> <data_type>
-<assignment>  ->  <id_equals> <operation>
+<assignment>  ->  <id_equals> <assignment'>
 <id_equals>  ->  <identifier> <equals>
+<assignment'>  ->  <value> <operator> | <identifier> <operator> | <call_identifier> <call_body>
 <operation>  ->  <value> <operator> | <identifier> <operator>
 <operator>  ->  <operator_char> <operation> | ε
 <function_call>  ->  <call_identifier> <call_body>
@@ -27,7 +29,7 @@
 <call_body>  ->  <oparenthesis> <parenthesis_call> | ε
 <parenthesis_call>  ->  <call_params> <cparenthesis>
 <call_params>  ->  <operation> <multiple_call_params>
-<multiple_call_params>  ->  <comma> <multiple_call_params> | ε
+<multiple_call_params>  ->  <comma> <call_params> | ε
 <if_declaration>  ->  <if_condition> <flow_body>
 <if_condition>  ->  <if> <operation>
 <else_declaration>  ->  <else> <flow_body>
@@ -42,8 +44,8 @@
 <while_declaration>  ->  <while> <operation>
 <flow_body>  ->  <obracket> <bracket_flow>
 <bracket_flow>  ->  <flow_content> <cbracket>
-<flow_content>  ->  <flow_contents> <flow_content> | ε
-<flow_contents>  ->   <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body>
+<flow_content>  ->  <flow_contents> <flow_content>
+<flow_contents>  ->   <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body> | ε
 <return>  ->  <operation> <semicolon>
 <data_type>  ->  int | float | char | str | bool
 <operator_char>  ->  + | - | * | / | % | ^ | && | || | == | != | > | < | >= | <=
