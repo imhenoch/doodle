@@ -12,11 +12,13 @@
 <return_type>  ->  int | float | char | str | bool
 <function_body>  ->  <bracket_function> <cbracket>
 <bracket_function>  ->  <obracket> <function_content>
-<function_content>  ->  <function_content'> <function_content>
+<function_content>  ->  <function_contents> <function_content> | ε
 <function_contents>  ->  <variable_declaration> <semicolon> | <assignment> <semicolon> | <function_call> <semicolon> | <if_declaration> <else_declaration> | <for_declaration> <flow_body> | <while_declaration> <flow_body> | <ret> <return> | ε
 <variable_declaration>  ->  <let> <multiple_variable> | <lem> <multiple_variable>
-<single_variable>  ->  <variable> <assignment>
-<multiple_variable>  ->  <single_variable> <multiple_variable>
+<single_variable>  ->  <variable> <equals_assignment>
+<equals_assignment>  ->  <equals> <assignment'>
+<multiple_variable>  ->  <single_variable> <multiple_variable'>
+<multiple_variable'>  ->  <comma> <multiple_variable> | ε
 <variable>  ->  <identifier> <variable_type>
 <variable_type>  ->  <colon> <data_type>
 <assignment>  ->  <id_equals> <assignment'>

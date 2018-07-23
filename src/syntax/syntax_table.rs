@@ -443,7 +443,7 @@ pub fn get_predict_set() -> Vec<Expression> {
     let mut expression = Vec::new();
     predict.push(String::from("identifier"));
     expression.push(String::from("<variable>"));
-    expression.push(String::from("<assignment>"));
+    expression.push(String::from("<equals_assignment>"));
     predict_set.push(Expression::new(
         String::from("<single_variable>"),
         predict,
@@ -453,11 +453,11 @@ pub fn get_predict_set() -> Vec<Expression> {
     // # 38
     let mut predict = Vec::new();
     let mut expression = Vec::new();
-    predict.push(String::from("identifier"));
-    expression.push(String::from("<single_variable>"));
-    expression.push(String::from("<multiple_variable>"));
+    predict.push(String::from("="));
+    expression.push(String::from("<equals>"));
+    expression.push(String::from("<assignment'>"));
     predict_set.push(Expression::new(
-        String::from("<multiple_variable>"),
+        String::from("<equals_assignment>"),
         predict,
         expression,
     ));
@@ -465,9 +465,9 @@ pub fn get_predict_set() -> Vec<Expression> {
     // # 39
     let mut predict = Vec::new();
     let mut expression = Vec::new();
-    predict.push(String::from(","));
-    expression.push(String::from("<comma>"));
-    expression.push(String::from("<multiple_variable>"));
+    predict.push(String::from("identifier"));
+    expression.push(String::from("<single_variable>"));
+    expression.push(String::from("<multiple_variable'>"));
     predict_set.push(Expression::new(
         String::from("<multiple_variable>"),
         predict,
@@ -477,15 +477,27 @@ pub fn get_predict_set() -> Vec<Expression> {
     // # 40
     let mut predict = Vec::new();
     let mut expression = Vec::new();
-    predict.push(String::from(";"));
-    expression.push(String::from(""));
+    predict.push(String::from(","));
+    expression.push(String::from("<comma>"));
+    expression.push(String::from("<multiple_variable>"));
     predict_set.push(Expression::new(
-        String::from("<multiple_variable>"),
+        String::from("<multiple_variable'>"),
         predict,
         expression,
     ));
 
     // # 41
+    let mut predict = Vec::new();
+    let mut expression = Vec::new();
+    predict.push(String::from(""));
+    expression.push(String::from(""));
+    predict_set.push(Expression::new(
+        String::from("<multiple_variable'>"),
+        predict,
+        expression,
+    ));
+
+    // # 42
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("identifier"));
@@ -497,7 +509,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 42
+    // # 43
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(":"));
@@ -509,7 +521,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 43
+    // # 44
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("identifier"));
@@ -521,7 +533,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 44
+    // # 45
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("identifier"));
@@ -529,18 +541,6 @@ pub fn get_predict_set() -> Vec<Expression> {
     expression.push(String::from("<equals>"));
     predict_set.push(Expression::new(
         String::from("<id_equals>"),
-        predict,
-        expression,
-    ));
-
-    // # 45
-    let mut predict = Vec::new();
-    let mut expression = Vec::new();
-    predict.push(String::from("call"));
-    expression.push(String::from("<call_identifier>"));
-    expression.push(String::from("<call_body>"));
-    predict_set.push(Expression::new(
-        String::from("<assignment'>"),
         predict,
         expression,
     ));
@@ -572,11 +572,11 @@ pub fn get_predict_set() -> Vec<Expression> {
     // # 48
     let mut predict = Vec::new();
     let mut expression = Vec::new();
-    predict.push(String::from("="));
-    expression.push(String::from("<equals>"));
-    expression.push(String::from("<assignment'>"));
+    predict.push(String::from("call"));
+    expression.push(String::from("<call_identifier>"));
+    expression.push(String::from("<call_body>"));
     predict_set.push(Expression::new(
-        String::from("<assignment>"),
+        String::from("<assignment'>"),
         predict,
         expression,
     ));
@@ -615,14 +615,13 @@ pub fn get_predict_set() -> Vec<Expression> {
     predict.push(String::from("%"));
     predict.push(String::from("^"));
     predict.push(String::from("&&"));
+    predict.push(String::from("||"));
     predict.push(String::from("=="));
     predict.push(String::from("!="));
     predict.push(String::from(">"));
     predict.push(String::from("<"));
     predict.push(String::from(">="));
     predict.push(String::from("<="));
-    predict.push(String::from("value"));
-    predict.push(String::from("identifier"));
     expression.push(String::from("<operator_char>"));
     expression.push(String::from("<operation>"));
     predict_set.push(Expression::new(
@@ -1189,6 +1188,17 @@ pub fn get_predict_set() -> Vec<Expression> {
     // # 99
     let mut predict = Vec::new();
     let mut expression = Vec::new();
+    predict.push(String::from("||"));
+    expression.push(String::from("||"));
+    predict_set.push(Expression::new(
+        String::from("<operator_char>"),
+        predict,
+        expression,
+    ));
+
+    // # 100
+    let mut predict = Vec::new();
+    let mut expression = Vec::new();
     predict.push(String::from("=="));
     expression.push(String::from("=="));
     predict_set.push(Expression::new(
@@ -1197,7 +1207,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 100
+    // # 101
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("!="));
@@ -1208,7 +1218,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 101
+    // # 102
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(">"));
@@ -1219,7 +1229,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 102
+    // # 103
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("<"));
@@ -1230,7 +1240,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 103
+    // # 104
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(">="));
@@ -1241,7 +1251,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 104
+    // # 105
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("<="));
@@ -1252,56 +1262,56 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 105
+    // # 106
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("fn"));
     expression.push(String::from("fn"));
     predict_set.push(Expression::new(String::from("<fn>"), predict, expression));
 
-    // # 106
+    // # 107
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("call"));
     expression.push(String::from("call"));
     predict_set.push(Expression::new(String::from("<call>"), predict, expression));
 
-    // # 107
+    // # 108
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("let"));
     expression.push(String::from("let"));
     predict_set.push(Expression::new(String::from("<let>"), predict, expression));
 
-    // # 108
+    // # 109
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("lem"));
     expression.push(String::from("lem"));
     predict_set.push(Expression::new(String::from("<lem>"), predict, expression));
 
-    // # 109
+    // # 110
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("if"));
     expression.push(String::from("if"));
     predict_set.push(Expression::new(String::from("<if>"), predict, expression));
 
-    // # 110
+    // # 111
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("else"));
     expression.push(String::from("else"));
     predict_set.push(Expression::new(String::from("<else>"), predict, expression));
 
-    // # 111
+    // # 112
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("for"));
     expression.push(String::from("for"));
     predict_set.push(Expression::new(String::from("<for>"), predict, expression));
 
-    // # 112
+    // # 113
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("while"));
@@ -1312,28 +1322,28 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 113
+    // # 114
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("in"));
     expression.push(String::from("in"));
     predict_set.push(Expression::new(String::from("<in>"), predict, expression));
 
-    // # 114
+    // # 115
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("to"));
     expression.push(String::from("to"));
     predict_set.push(Expression::new(String::from("<to>"), predict, expression));
 
-    // # 115
+    // # 116
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("ret"));
     expression.push(String::from("ret"));
     predict_set.push(Expression::new(String::from("<ret>"), predict, expression));
 
-    // # 116
+    // # 117
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("identifier"));
@@ -1344,7 +1354,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 117
+    // # 118
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("value"));
@@ -1355,7 +1365,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 118
+    // # 119
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("("));
@@ -1366,7 +1376,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 119
+    // # 120
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(")"));
@@ -1377,7 +1387,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 120
+    // # 121
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("{"));
@@ -1388,7 +1398,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 121
+    // # 122
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("}"));
@@ -1399,7 +1409,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 122
+    // # 123
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(":"));
@@ -1410,7 +1420,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 123
+    // # 124
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(";"));
@@ -1421,7 +1431,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 124
+    // # 125
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from(","));
@@ -1432,7 +1442,7 @@ pub fn get_predict_set() -> Vec<Expression> {
         expression,
     ));
 
-    // # 125
+    // # 126
     let mut predict = Vec::new();
     let mut expression = Vec::new();
     predict.push(String::from("="));
