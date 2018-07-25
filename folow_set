@@ -13,24 +13,28 @@ SIGUIENTES(<return_type>)  =  { { }
 SIGUIENTES(<function_body>)  =  { ε, fn }
 SIGUIENTES(<bracket_function>)  =  { } }
 SIGUIENTES(<function_content>)  =  { } }
+SIGUIENTES(<function_contents>)  =  { ε, let, lem, call, for, ret, identifier, while, if }
 SIGUIENTES(<variable_declaration>)  =  { ; }
-SIGUIENTES(<single_variable>)  =  { identifier }
+SIGUIENTES(<single_variable>)  =  { ε, , }
+SIGUIENTES(<equals_assignment>)  =  { ε, , }
 SIGUIENTES(<multiple_variable>)  =  { ; }
-SIGUIENTES(<variable>)  =  { identifier, ,, ε }
-SIGUIENTES(<variable_type>)  =  { identifier, ,, ε }
-SIGUIENTES(<assignment>)  =  { ;, identifier }
-SIGUIENTES(<id_equals>)  =  { value, identifier }
-SIGUIENTES(<operation>)  =  { ;, ,, ε, {, identifier }
-SIGUIENTES(<operator>)  =  { ;, ,, ε, {, identifier }
+SIGUIENTES(<multiple_variable'>)  =  { ; }
+SIGUIENTES(<variable>)  =  { =, ,, ε, identifier }
+SIGUIENTES(<variable_type>)  =  { =, ,, ε, identifier }
+SIGUIENTES(<assignment>)  =  { ; }
+SIGUIENTES(<id_equals>)  =  { value, identifier, call }
+SIGUIENTES(<assignment'>)  =  { ;, ε, , }
+SIGUIENTES(<operation>)  =  { ;, ε, ,, { }
+SIGUIENTES(<operator>)  =  { ;, ε, ,, { }
 SIGUIENTES(<function_call>)  =  { ; }
 SIGUIENTES(<call_identifier>)  =  { ε, ( }
-SIGUIENTES(<call_body>)  =  { ; }
-SIGUIENTES(<parenthesis_call>)  =  { ; }
+SIGUIENTES(<call_body>)  =  { ;, ε, , }
+SIGUIENTES(<parenthesis_call>)  =  { ;, ε, , }
 SIGUIENTES(<call_params>)  =  { ) }
 SIGUIENTES(<multiple_call_params>)  =  { ) }
 SIGUIENTES(<if_declaration>)  =  { else }
 SIGUIENTES(<if_condition>)  =  { { }
-SIGUIENTES(<else_declaration>)  =  { ε, identifier, if, while, call, for, } }
+SIGUIENTES(<else_declaration>)  =  { ε, identifier, if, while, call, for, let, lem, ret }
 SIGUIENTES(<for_declaration>)  =  { { }
 SIGUIENTES(<for_condition>)  =  { { }
 SIGUIENTES(<id_in>)  =  { value, identifier }
@@ -40,12 +44,12 @@ SIGUIENTES(<range_identifier>)  =  { { }
 SIGUIENTES(<value_to>)  =  { value, identifier }
 SIGUIENTES(<identifier_to>)  =  { value, identifier }
 SIGUIENTES(<while_declaration>)  =  { { }
-SIGUIENTES(<flow_body>)  =  { ε, identifier, if, while, call, for, }, else }
-SIGUIENTES(<bracket_flow>)  =  { ε, identifier, if, while, call, for, }, else }
+SIGUIENTES(<flow_body>)  =  { ε, identifier, if, while, call, for, let, lem, ret, else }
+SIGUIENTES(<bracket_flow>)  =  { ε, identifier, if, while, call, for, let, lem, ret, else }
 SIGUIENTES(<flow_content>)  =  { } }
 SIGUIENTES(<flow_contents>)  =  { ε, identifier, if, while, call, for }
-SIGUIENTES(<return>)  =  { } }
-SIGUIENTES(<data_type>)  =  { identifier, ,, ε }
+SIGUIENTES(<return>)  =  { ε, let, lem, call, for, ret, identifier, while, if }
+SIGUIENTES(<data_type>)  =  { =, ,, ε, identifier }
 SIGUIENTES(<operator_char>)  =  { value, identifier }
 SIGUIENTES(<fn>)  =  { identifier }
 SIGUIENTES(<call>)  =  { identifier }
@@ -58,13 +62,13 @@ SIGUIENTES(<while>)  =  { value, identifier }
 SIGUIENTES(<in>)  =  { value, identifier }
 SIGUIENTES(<to>)  =  { value, identifier }
 SIGUIENTES(<ret>)  =  { value, identifier }
-SIGUIENTES(<identifier>)  =  { to, in, ε, +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <=, =, :, ( }
-SIGUIENTES(<value>)  =  { to, ε, +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
+SIGUIENTES(<identifier>)  =  { to, in, ε, +, -, *, /, %, ^, &&, ==, !=, >, <, >=, <=, =, :, ( }
+SIGUIENTES(<value>)  =  { to, ε, +, -, *, /, %, ^, &&, ==, !=, >, <, >=, <= }
 SIGUIENTES(<oparenthesis>)  =  { value, identifier, ) }
-SIGUIENTES(<cparenthesis>)  =  { ;, ε, : }
+SIGUIENTES(<cparenthesis>)  =  { ;, ε, ,, : }
 SIGUIENTES(<obracket>)  =  { ε, identifier, if, while, call, for, let, lem, ret }
-SIGUIENTES(<cbracket>)  =  { ε, identifier, if, while, call, for, }, else, fn }
+SIGUIENTES(<cbracket>)  =  { ε, identifier, if, while, call, for, let, lem, ret, else, fn }
 SIGUIENTES(<colon>)  =  { int, float, char, str, bool }
-SIGUIENTES(<semicolon>)  =  { }, ε, identifier, if, while, call, for }
-SIGUIENTES(<comma>)  =  { ε, ,, identifier }
-SIGUIENTES(<equals>)  =  { value, identifier }
+SIGUIENTES(<semicolon>)  =  { ε, let, lem, call, for, ret, identifier, while, if }
+SIGUIENTES(<comma>)  =  { value, identifier }
+SIGUIENTES(<equals>)  =  { value, identifier, call }

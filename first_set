@@ -11,17 +11,21 @@ PRIMEROS(<comma_variable>)  =  { identifier }
 PRIMEROS(<function_return>)  =  { ε, : }
 PRIMEROS(<return_type>)  =  { int, float, char, str, bool }
 PRIMEROS(<function_body>)  =  { { }
-PRIMEROS(<bracket_function>)  =  { { }
-PRIMEROS(<function_content>)  =  { let, lem, call, for, ret, identifier, while, if }
-PRIMEROS(<variable_declaration>)  =  {let, lem  }
+PRIMEROS(<bracket_function>)  =  {  }
+PRIMEROS(<function_content>)  =  { ε, let, lem, call, for, ret, identifier, while, if }
+PRIMEROS(<function_contents>)  =  { ε, let, lem, call, for, ret, identifier, while, if }
+PRIMEROS(<variable_declaration>)  =  { let, lem }
 PRIMEROS(<single_variable>)  =  { identifier }
+PRIMEROS(<equals_assignment>)  =  { = }
 PRIMEROS(<multiple_variable>)  =  { identifier }
+PRIMEROS(<multiple_variable'>)  =  { ε, , }
 PRIMEROS(<variable>)  =  { identifier }
 PRIMEROS(<variable_type>)  =  { : }
 PRIMEROS(<assignment>)  =  { identifier }
 PRIMEROS(<id_equals>)  =  { identifier }
+PRIMEROS(<assignment'>)  =  { value, identifier, call }
 PRIMEROS(<operation>)  =  { value, identifier }
-PRIMEROS(<operator>)  =  { ε, +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
+PRIMEROS(<operator>)  =  { ε, +, -, *, /, %, ^, &&, ==, !=, >, <, >=, <= }
 PRIMEROS(<function_call>)  =  { call }
 PRIMEROS(<call_identifier>)  =  { call }
 PRIMEROS(<call_body>)  =  { ε, ( }
@@ -32,7 +36,7 @@ PRIMEROS(<if_declaration>)  =  { if }
 PRIMEROS(<if_condition>)  =  { if }
 PRIMEROS(<else_declaration>)  =  { else }
 PRIMEROS(<for_declaration>)  =  { for }
-PRIMEROS(<for_condition>)  =  { for }
+PRIMEROS(<for_condition>)  =  { identifier }
 PRIMEROS(<id_in>)  =  { identifier }
 PRIMEROS(<range>)  =  { value, identifier }
 PRIMEROS(<range_value>)  =  { value, identifier }
@@ -43,7 +47,7 @@ PRIMEROS(<while_declaration>)  =  { while }
 PRIMEROS(<flow_body>)  =  { { }
 PRIMEROS(<bracket_flow>)  =  { ε, identifier, if, while, call, for }
 PRIMEROS(<flow_content>)  =  { ε, identifier, if, while, call, for }
-PRIMEROS(<flow_contents>)  =  { identifier, if, while, call, for }
+PRIMEROS(<flow_contents>)  =  { ε, identifier, if, while, call, for }
 PRIMEROS(<return>)  =  { value, identifier }
 PRIMEROS(<data_type>)  =  { int, float, char, str, bool }
 PRIMEROS(<operator_char>)  =  { +, -, *, /, %, ^, &&, ||, ==, !=, >, <, >=, <= }
